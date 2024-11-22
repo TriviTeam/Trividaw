@@ -1,0 +1,67 @@
+
+body {
+    display: grid;
+    background-image: url('fondo.png');
+    background-size: cover;
+    height: 100vh; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    margin: 0;
+    place-items: center;
+}
+
+#centerForm {
+    position: relative; /* Base para posicionar elementos dentro del contenedor */
+    width: 50%; /* Ajusta al tamaño de la imagen central */
+    margin: 0 auto; /* Centra horizontalmente en la página */
+    text-align: center; /* Centra el contenido del formulario */
+}
+#midContainerImage{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+}
+#midContainerBanner{
+    display:flex;
+    size: 2m;
+    flex-direction:column;
+    align-items:center;
+}
+#midContainerBanner img{
+    width: 500px;
+    height: auto;
+}
+#formContainerImage{
+    position: relative;
+    width: 60%;
+    height: auto;
+}
+.icon {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+    }
+    .icon-sound {
+        top: 20px;
+        left: 20px;
+    }
+
+    .icon-clock {
+        bottom: 20px;
+        left: 20px;
+    }
+
+    .icon-trophy {
+        top: 20px;
+        right: 20px;
+    }
+
+    .icon-question {
+        bottom: 20px;
+        right: 20px;
+    }
+
+    .icon-config {
+        top: 20px;
+        right: 80px; 
+    }
