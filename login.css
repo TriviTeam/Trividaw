@@ -1,7 +1,6 @@
-
 body {
     display: grid;
-    background-image: url('fondo.png');
+    background-image: url('fondo.png'); /* Cambia a tu ruta de fondo */
     background-size: cover;
     height: 100vh; 
     background-position: center; 
@@ -16,52 +15,96 @@ body {
     margin: 0 auto; /* Centra horizontalmente en la página */
     text-align: center; /* Centra el contenido del formulario */
 }
-#midContainerImage{
-    display:flex;
+
+#midContainerImage {
+    display: flex;
     flex-direction: column;
-    align-items:center;
+    align-items: center;
 }
-#midContainerBanner{
-    display:flex;
+
+#midContainerBanner {
+    display: flex;
     size: 2m;
-    flex-direction:column;
-    align-items:center;
+    flex-direction: column;
+    align-items: center;
 }
-#midContainerBanner img{
+
+#midContainerBanner img {
     width: 500px;
     height: auto;
 }
-#formContainerImage{
+
+#formContainerImage {
     position: relative;
     width: 60%;
     height: auto;
 }
+
 .icon {
-        position: absolute;
-        width: 50px;
-        height: 50px;
-    }
-    .icon-sound {
-        top: 20px;
-        left: 20px;
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+.icon-sound {
+    top: 20px;
+    left: 20px;
+}
+
+.icon-clock {
+    bottom: 20px;
+    left: 20px;
+}
+
+.icon-trophy {
+    top: 20px;
+    right: 20px;
+}
+
+.icon-question {
+    bottom: 20px;
+    right: 20px;
+}
+
+.icon-config {
+    top: 20px;
+    right: 80px; 
+}
+
+.modelo {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modelo-contenido {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    animation: aparecer 0.3s ease-out;
+    max-width: 400px;
+    margin: 0 auto;
+    line-height: 1.6;
+    font-size: 16px;
+    word-wrap: break-word;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
     }
 
-    .icon-clock {
-        bottom: 20px;
-        left: 20px;
+    to {
+        opacity: 1;
+        transform: scale(1);
     }
-
-    .icon-trophy {
-        top: 20px;
-        right: 20px;
-    }
-
-    .icon-question {
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .icon-config {
-        top: 20px;
-        right: 80px; 
-    }
+}
