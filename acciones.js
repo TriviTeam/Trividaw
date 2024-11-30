@@ -27,7 +27,6 @@ function iniciar() {
         }
     });
 
-    // Clock functionality
     let reloj = document.getElementById("clock-icon");
     let modelo = document.getElementById("modelofecha");
     let modeloTexto = document.getElementById("modelo-texto");
