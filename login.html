@@ -51,6 +51,20 @@
             margin-top: -40px;
         }
 
+        #botonIni {
+            position: relative; 
+            z-index: 10; /* Asegura que esté sobre otros elementos */
+            transform: translateY(-150%);
+            width: 300px;
+            margin-top: -900px;
+            cursor: pointer; /* Cambia el cursor a una manita al pasar por el botón */
+            transition: transform 0.1s ease-in-out;
+        }
+
+        #botonIni:active {
+            transform: translateY(-150%) scale(0.95); /* efecto de pulsación */
+        }
+       
         /* Estilo para los campos de formulario */
         .campo-formulario {
             background-color: rgba(255, 255, 255, 0.2);  
@@ -96,10 +110,12 @@
             height: 150px;
             border-radius: 50%;
             border: 2px solid #ccc;
-        }
+        }   
+
     </style>
 </head>
 <body>
+    
 
     <div id="midContainerImage">
         <img src="img/formContainerImage.png" id="formContainerImage" alt="imagen">
@@ -124,13 +140,20 @@
                 <label for="email"></label>
                 <input type="email" id="email" name="email" placeholder="correo electrónico">
             </div>
+            
 
         </div> <!-- Fin del contenedor de los campos del formulario -->
-  
+        
     </div> <!-- Fin del contenedor de la imagen -->
   
+    
     <div id="midContainerBanner" class="floating-image">    
         <img src="img/welcomeBanner.png" id="welcomeBanner" alt="Bienvenidos">
+    </div>
+    
+    <!--Botón de iniciar-->
+    <div id="divBotonIni" class="saveStartButton">
+        <img src="img/iniciar.png" id="botonIni" alt="iniciar" onclick="goToPage()">
     </div>
 
     <audio id="music" style="display: none;" loop>
