@@ -1,7 +1,7 @@
 window.addEventListener("load", iniciar);
 
 function iniciar() {
-    // play, mute, unmute. mute by default por las políticas de navegadores.
+    // funciona así: Al recargar la página, pausado. Al pausar play. Mute by default, respetando las políticas de navegadores. 
     const iconoAudio = document.getElementById("sound-icon");
     const audio = document.getElementById("music"); 
     let audioStarted = false; 
@@ -22,7 +22,7 @@ function iniciar() {
             audio.muted = false;  // desmutea
             iconoAudio.src = "img/volume.png";  // cambia el icono a sonido
         } else {
-            audio.muted = true;  // Mute the audio
+            audio.muted = true;  // Mutea el audio
             iconoAudio.src = "img/mute.png";  // cambia el icono a mute
         }
     });
@@ -46,7 +46,7 @@ function iniciar() {
 
 
     boton2.addEventListener("click", function () {
-        aboutTexto.textContent = `¡Hola! Somos Fátima y Sergio, dos estudiantes apasionados por el desarrollo de aplicaciones web, actualmente cursando nuestro segundo y último año de este fascinante camino. Nuestro interés por la tecnología y los videojuegos nos llevó a crear este divertido proyecto: un trivial de preguntas que combina aprendizaje y entretenimiento.
+        aboutTexto.textContent = `¡Hola! Somos Fátima y Sergio, dos estudiantes apasionados por el desarrollo de aplicaciones web, actualmente cursando nuestro segundo y último año de este fascinante camino. Nuestro interés por la tecnología y los videojuegos nos llevó a crear este divertido proyecto: un trivia de preguntas que combina aprendizaje y entretenimiento.
         Este juego fue desarrollado utilizando JavaScript, HTML y CSS, aprovechando las herramientas que hemos aprendido durante el curso. Queríamos diseñar algo que no solo pusiera a prueba los conocimientos de los jugadores, sino que también reflejara nuestra creatividad y habilidades técnicas.
         Creemos que los juegos tienen el poder de conectar a las personas y de convertir el aprendizaje en una experiencia emocionante. Este trivial es nuestro pequeño aporte a ese mundillo, y esperamos que disfrutes tanto jugándolo como nosotros disfrutamos creándolo.
         ¡Gracias por acompañarnos en este viaje!`;

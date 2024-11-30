@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
     <script src="acciones.js" defer></script> <!--carga diferida del script--> 
     <title>Trividaw</title>
 
@@ -36,10 +37,14 @@
             height: auto;
         }
 
+        /* 
         .texto {
             position: absolute;
             top: 140px;
-        }
+        } 
+        */ 
+         /*Lo he cambiado a floating-image, no he eliminado
+        la línea original, sólo comentado */
 
         .boton {
             position: absolute;
@@ -141,7 +146,8 @@
 
 <body>
     <div id="container2">
-        <img src="img/trividaw.png" alt="trividaw" class="texto">
+        <!--<img src="img/trividaw.png" alt="trividaw" class="texto">-->
+        <img src="img/trividaw.png" alt="trividaw" id="trividawFlota" class="floating-image">
         <img src="img/form.png" alt="botones">
         <button class="boton boton1" onclick="location.href='login.html'"></button>
         <button class="boton boton2"></button>
