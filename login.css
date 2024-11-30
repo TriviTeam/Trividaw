@@ -8,19 +8,27 @@ body {
     margin: 0;
     place-items: center;
 }
+
+/* Floating animation for Bienvenidos banner */
 .floating-image {
     animation: float 3s ease-in-out infinite;
     position: absolute;
-    top: -80px; /* Position above the form */
+    top: 0; /* Start at the top */
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;  /* Ensure it's above the form */
 }
-#centerForm {
-    position: relative; /* Base para posicionar elementos dentro del contenedor */
-    width: 50%; /* Ajusta al tamaño de la imagen central */
-    margin: 0 auto; /* Centra horizontalmente en la página */
-    text-align: center; /* Centra el contenido del formulario */
+
+@keyframes float {
+    0% {
+        transform: translateY(0) translateX(-50%);
+    }
+    50% {
+        transform: translateY(-20px) translateX(-50%); /* Move up slightly */
+    }
+    100% {
+        transform: translateY(0) translateX(-50%);
+    }
 }
 
 #midContainerImage {
@@ -31,9 +39,12 @@ body {
 
 #midContainerBanner {
     display: flex;
-    size: 2m;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    position: absolute;
+    top: 10%; /* Position it slightly down */
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #midContainerBanner img {

@@ -1,33 +1,16 @@
 window.addEventListener("load", iniciar);
 
 function iniciar() {
-    // play, mute, unmute. mute de default por las políticas de navegadores.
-    const iconoAudio = document.getElementById("sound-icon");
-    const audio = document.getElementById("music"); 
-    let audioStarted = false; 
+    let icono = document.getElementById("sound-icon");
 
-    // muted audio by default 
-    audio.muted = true;  
-
-    iconoAudio.addEventListener("click", function () {
-        // al primer click suena el audio
-        if (!audioStarted) {
-            audio.play().catch((error) => {
-                console.error("Audio play error:", error);
-            });
-            audioStarted = true;
-        }
-
-        if (audio.muted) {
-            audio.muted = false;  // desmutea
-            iconoAudio.src = "img/volume.png";  // cambia el icono a sonido
+    icono.addEventListener("click", function () {
+        if (icono.src.includes("volume.png")) {
+            icono.src = "img/mute.png";
         } else {
-            audio.muted = true;  // Mute the audio
-            iconoAudio.src = "img/mute.png";  // cambia el icono a mute
+            icono.src = "img/volume.png";
         }
     });
 
-    // Clock functionality
     let reloj = document.getElementById("clock-icon");
     let modelo = document.getElementById("modelofecha");
     let modeloTexto = document.getElementById("modelo-texto");
@@ -40,7 +23,7 @@ function iniciar() {
         modelo.style.display = "flex";
     });
 
-    // About Us functionality
+    // Funcionalidad para botón About Us (boton2)
     let boton2 = document.querySelector(".boton2");
     let modeloAbout = document.getElementById("modelo-about");
     let aboutTexto = document.getElementById("about-text");
@@ -53,13 +36,36 @@ function iniciar() {
         modeloAbout.style.display = "flex";
     });
 
-    // Close modals if clicked outside
+    // Cerrar modelos
     window.addEventListener("click", function (event) {
         if (event.target === modelo) {
             modelo.style.display = "none";
         }
         if (event.target === modeloAbout) {
             modeloAbout.style.display = "none";
+        }
+    });
+    // Get the elements
+    const iconoAudio = document.getElementById("sound-icon");
+    const audio = document.getElementById("music");
+
+    // Flag to track if the music has started
+    let audioStarted = false;
+
+    iconoAudio.addEventListener("click", function () {
+        // si no ha empezado la música, empieza
+        if (!audioStarted) {
+            audio.play(); // play cuando el user hace click por primera vez
+            audioStarted = true; // en true para que no suene automáticamente
+        }
+
+        //  mute/unmute
+        if (audio.muted) {
+            // Unmute y cambia el icon
+            audio.muted = false;
+            iconoAudio.src = "img/volume.png"; // 
+            audio.muted = true;
+            iconoAudio.src = "img/mute.png"; // Update to mute icon
         }
     });
 }
