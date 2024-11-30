@@ -1,7 +1,7 @@
 window.addEventListener("load", iniciar);
 
 function iniciar() {
-    // play, mute, unmute. mute de default por las políticas de navegadores.
+    // play, mute, unmute. mute by default por las políticas de navegadores.
     const iconoAudio = document.getElementById("sound-icon");
     const audio = document.getElementById("music"); 
     let audioStarted = false; 
@@ -44,6 +44,7 @@ function iniciar() {
     let modeloAbout = document.getElementById("modelo-about");
     let aboutTexto = document.getElementById("about-text");
 
+
     boton2.addEventListener("click", function () {
         aboutTexto.textContent = `¡Hola! Somos Fátima y Sergio, dos estudiantes apasionados por el desarrollo de aplicaciones web, actualmente cursando nuestro segundo y último año de este fascinante camino. Nuestro interés por la tecnología y los videojuegos nos llevó a crear este divertido proyecto: un trivial de preguntas que combina aprendizaje y entretenimiento.
         Este juego fue desarrollado utilizando JavaScript, HTML y CSS, aprovechando las herramientas que hemos aprendido durante el curso. Queríamos diseñar algo que no solo pusiera a prueba los conocimientos de los jugadores, sino que también reflejara nuestra creatividad y habilidades técnicas.
@@ -52,6 +53,7 @@ function iniciar() {
         modeloAbout.style.display = "flex";
     });
 
+    
 
     // Close modals if clicked outside
     window.addEventListener("click", function (event) {

@@ -146,20 +146,20 @@
 
     <script>
 
-            // array de avatares
-            const avatars = ["img/ava1.png", "img/ava2.png", "img/ava3.png"];
-            let currentAvatarIndex = 0;
+        // array de avatares
+        const avatars = ["img/ava1.png", "img/ava2.png", "img/ava3.png"];
+        let currentAvatarIndex = 0;
     
             // Elementos del DOM
-            const avatarElement = document.getElementById("avatar");
-            const leftArrow = document.getElementById("arrow-left");
-            const rightArrow = document.getElementById("arrow-right");
+        const avatarElement = document.getElementById("avatar");
+        const leftArrow = document.getElementById("arrow-left");
+        const rightArrow = document.getElementById("arrow-right");
     
             // Función para cambiar el avatar
         function updateAvatar(index) {
             avatarElement.src = avatars[index];
         }
-    
+        
             // Eventos para cambiar de avatar
         leftArrow.addEventListener("click", () => {
             currentAvatarIndex = (currentAvatarIndex - 1 + avatars.length) % avatars.length;
@@ -170,6 +170,7 @@
             currentAvatarIndex = (currentAvatarIndex + 1) % avatars.length;
             updateAvatar(currentAvatarIndex);
             });
+            
     </script>
 </body>
 </html>
