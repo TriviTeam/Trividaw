@@ -27,17 +27,17 @@ function iniciar() {
         }
     });
 
-    let reloj = document.getElementById("clock-icon");
-    let modelo = document.getElementById("modelofecha");
-    let modeloTexto = document.getElementById("modelo-texto");
+     let reloj = document.getElementById("clock-icon");
+            let modelo = document.getElementById("modelofecha");
+            let modeloTexto = document.getElementById("modelo-texto");
 
-    reloj.addEventListener("click", function () {
-        let fecha = new Date();
-        let formatoFecha = fecha.toLocaleDateString();
-        let formatoHora = fecha.toLocaleTimeString();
-        modeloTexto.textContent = `Fecha: ${formatoFecha} - Hora: ${formatoHora}`;
-        modelo.style.display = "flex";
-    });
+            reloj.addEventListener("click", function () {
+                let fecha = new Date();
+                let formatoFecha = fecha.toLocaleDateString();
+                let formatoHora = fecha.toLocaleTimeString();
+                modeloTexto.textContent = `Fecha: ${formatoFecha} - Hora: ${formatoHora}`;
+                modelo.style.display = "flex";
+            });
 
     // About Us functionality
     let boton2 = document.querySelector(".boton2");
@@ -51,6 +51,7 @@ function iniciar() {
         ¡Gracias por acompañarnos en este viaje!`;
         modeloAbout.style.display = "flex";
     });
+
 
     // Close modals if clicked outside
     window.addEventListener("click", function (event) {

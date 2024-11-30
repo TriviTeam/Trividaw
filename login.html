@@ -35,25 +35,20 @@
             top: 25%; /* Esto ajusta el contenedor hacia la parte superior */
             left: 50%;
             transform: translateX(-50%); /* Centrado horizontal */
-            width: 300px; /* Ancho fijo */
+            width: 150px; /* Ancho fijo */
             text-align: center;
             gap: 20px;
         }
         #nickname {
             order: 1; /* Define el orden del campo */
-            margin-top: 40px;
+            margin-top: 60px;
             height:9;
         }
     
 
         #email {
             order: 2;
-            margin-top: -20px;
-        }
-
-        #desplegable {
-            order: 3;
-            margin-top: -30px;
+            margin-top: -40px;
         }
 
         /* Estilo para los campos de formulario */
@@ -78,12 +73,42 @@
             display: block;
             margin-bottom: 8px;
         }
+        /* Avatar y sus flechas */
+        .avatar-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.1px;
+            margin: 20px 0;
+            margin-top: -65%;
+        }
+        /* Flechas */
+        .arrow {
+            cursor: pointer;
+            width: 70px;
+            height: 70px;
+        }
+
+        /* Avatar */
+        .avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 2px solid #ccc;
+        }
     </style>
 </head>
 <body>
 
     <div id="midContainerImage">
         <img src="img/formContainerImage.png" id="formContainerImage" alt="imagen">
+
+    <div class="avatar-container">
+            <img src="img/izq.png" id="arrow-left" class="arrow" alt="Flecha izquierda">
+            <img src="img/ava1.png" id="avatar" class="avatar" alt="Avatar actual">
+            <img src="img/der.png" id="arrow-right" class="arrow" alt="Flecha derecha">
+    </div>
 
         <!-- Contenedor para los campos del formulario -->
         <div id="formFieldsContainer">
@@ -100,18 +125,6 @@
                 <input type="email" id="email" name="email" placeholder="correo electrónico">
             </div>
 
-            <!-- Campo desplegable de Trivia -->
-            <div class="campo-formulario" id="desplegable">
-                <label for="trivia-options"></label>
-                <select id="trivia-options" name="trivia-options">
-                    <option value="general">Arte 🖌️ </option>
-                    <option value="historia">Historia 📚</option>
-                    <option value="geografia">Geografía 🌍</option>
-                    <option value="deportes">Deportes ⚽ </option>
-                    <option value="entretenimiento">Entretenimiento 🎶</option>
-                </select>
-            </div>
-
         </div> <!-- Fin del contenedor de los campos del formulario -->
   
     </div> <!-- Fin del contenedor de la imagen -->
@@ -119,7 +132,7 @@
     <div id="midContainerBanner" class="floating-image">    
         <img src="img/welcomeBanner.png" id="welcomeBanner" alt="Bienvenidos">
     </div>
-    
+
     <audio id="music" style="display: none;" loop>
         <source src="trividawSrc/music.mp3" type="audio/mp3">
         Your browser does not support the audio element.
@@ -131,5 +144,32 @@
     <img src="img/question-mark.png" alt="Icono de pregunta" class="icon icon-question">
     <img src="img/settings.png" alt="Icono de configuración" class="icon icon-config">
 
+    <script>
+
+            // array de avatares
+            const avatars = ["img/ava1.png", "img/ava2.png", "img/ava3.png"];
+            let currentAvatarIndex = 0;
+    
+            // Elementos del DOM
+            const avatarElement = document.getElementById("avatar");
+            const leftArrow = document.getElementById("arrow-left");
+            const rightArrow = document.getElementById("arrow-right");
+    
+            // Función para cambiar el avatar
+        function updateAvatar(index) {
+            avatarElement.src = avatars[index];
+        }
+    
+            // Eventos para cambiar de avatar
+        leftArrow.addEventListener("click", () => {
+            currentAvatarIndex = (currentAvatarIndex - 1 + avatars.length) % avatars.length;
+                updateAvatar(currentAvatarIndex);
+            });
+    
+        rightArrow.addEventListener("click", () => {
+            currentAvatarIndex = (currentAvatarIndex + 1) % avatars.length;
+            updateAvatar(currentAvatarIndex);
+            });
+    </script>
 </body>
 </html>
