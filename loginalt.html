@@ -1,51 +1,20 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <script src="acciones.js" defer></script> <!--carga diferida del script--> 
-    <link rel="stylesheet" href="login.css">
-    <style>
-        .arrow {
-            cursor: pointer;
-        }
-    </style>
+    <link rel="stylesheet" href="loginalt.css">
 </head>
-<body class="bg-blue-50 flex items-center justify-center min-h-screen">
-    <div class="relative bg-transparent rounded-lg p-8 shadow-lg w-full max-w-md">
-        <div class="absolute -top-12 left-1/2 transform -translate-x-1/2 flex items-center">
-            <i class="fas fa-chevron-left text-2xl arrow" id="left-arrow"></i>
-            <img src="img/formContainerImage.png" id="formContainerImage" alt="imagen" class="w-24 h-24 mx-2">
-            <i class="fas fa-chevron-right text-2xl arrow" id="right-arrow"></i>
-        </div>
-        <form class="space-y-6 mt-12">
-            <div class="flex items-center space-x-4">
-                <i class="fas fa-user text-2xl"></i>
-                <input class="flex-1 p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Nombre" type="text"/>
-            </div>
-            <div class="flex items-center space-x-4">
-                <i class="fas fa-envelope text-2xl"></i>
-                <input class="flex-1 p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Correo electrónico" type="email"/>
-            </div>
-            <div class="flex items-center space-x-4">
-                <i class="fas fa-th-large text-2xl"></i>
-                <select class="flex-1 p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="" disabled selected>Categorías</option>
-                    <option value="general">General</option>
-                    <option value="science">Ciencia</option>
-                    <option value="history">Historia</option>
-                    <option value="sports">Deportes</option>
-                    <option value="entertainment">Entretenimiento</option>
-                </select>
-                <i class="fas fa-chevron-down text-2xl"></i>
-            </div>
-        </form>
+<body>
+    <div id="midContainerImage">  
+        <img src="img/formContainerImage.png" id="formContainerImage" alt="imagen">
     </div>
-
-    <div id="midContainerBanner">    
-        <img src="img/welcomeBanner.png" id="welcomeBanner" alt="bienvenida">
+    
+    <!-- Bienvenidos banner with floating effect -->
+    <div id="midContainerBanner" class="floating-image">    
+        <img src="img/welcomeBanner.png" id="welcomeBanner" alt="Bienvenidos">
     </div>
 
     <img src="img/clock.png" alt="Icono de reloj" class="icon icon-clock" id="clock-icon">
@@ -53,24 +22,5 @@
     <img src="img/trophy.png" alt="Icono de trofeo" class="icon icon-trophy">
     <img src="img/question-mark.png" alt="Icono de pregunta" class="icon icon-question">
     <img src="img/settings.png" alt="Icono de configuración" class="icon icon-config">
-
-    <script>
-        const avatars = [
-            'img/formContainerImage.png',
-            'img/avatar2.png',
-            'img/avatar3.png'
-        ];
-        let currentAvatarIndex = 0;
-
-        document.getElementById('left-arrow').addEventListener('click', () => {
-            currentAvatarIndex = (currentAvatarIndex - 1 + avatars.length) % avatars.length;
-            document.getElementById('formContainerImage').src = avatars[currentAvatarIndex];
-        });
-
-        document.getElementById('right-arrow').addEventListener('click', () => {
-            currentAvatarIndex = (currentAvatarIndex + 1) % avatars.length;
-            document.getElementById('formContainerImage').src = avatars[currentAvatarIndex];
-        });
-    </script>
 </body>
 </html>
