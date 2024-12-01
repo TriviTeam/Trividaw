@@ -1,106 +1,55 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trividaw - login</title>
-    <script src="acciones.js" defer></script> <!--carga diferida del script--> 
     <link rel="stylesheet" href="login.css">
-    <style>
-        /* Contenedor general del avatar */
-        .avatar-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.1px;
-            margin: 20px 0;
-        }
+    <link rel="stylesheet" href="test.css">
+    <script src="acciones.js" defer></script> <!--carga diferida del script--> 
+    <title>Trividaw</title>
 
-        /* Flechas */
-        .arrow {
-            cursor: pointer;
-            width: 70px;
-            height: 70px;
-        }
-
-        /* Avatar */
-        .avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            border: 2px solid #ccc;
-        }
-    </style>
+   <style>
+    
+   </style>
+    
 </head>
+
 <body>
+    <div id="trividawBanner">
+        <!--<img src="img/trividaw.png" alt="trividaw" class="texto">-->
+        <img src="img/trividaw.png" alt="trividaw" id="trividawFlota" class="floating-image2">
+        <!--location.href='login.html'"-->
+    </div>
+    <div id="contenedorRedondo">
+        <img src="img/form.png">
+    </div>
+    <div id="botonJugar" class="pulsadoresInicio">
+        <img src="img/jugarBoton.png">
+    </div>
+    <div id="botonAbout" class="pulsadoresInicio">
+        <img src="img/aboutBoton.png">
+    </div>
 
-    <div id="midContainerImage">
-        <img src="img/formContainerImage.png" id="formContainerImage" alt="imagen">
+    <img src="img/clock.png" alt="Icono de reloj" class="icon icon-clock" id="clock-icon">
+    <img src="img/volume.png" alt="Icono de sonido" class="icon icon-sound" id="sound-icon">
+    <img src="img/trophy.png" alt="Icono de trofeo" class="icon icon-trophy">
+    <img src="img/question-mark.png" alt="Icono de pregunta" class="icon icon-question">
+    <img src="img/settings.png" alt="Icono de configuración" class="icon icon-config">
 
-        <!-- Contenedor del avatar con flechas -->
-        <div class="avatar-container">
-            <img src="img/izq.png" id="arrow-left" class="arrow" alt="Flecha izquierda">
-            <img src="img/ava1.png" id="avatar" class="avatar" alt="Avatar actual">
-            <img src="img/der.png" id="arrow-right" class="arrow" alt="Flecha derecha">
+    <!-- Modelo para About Us -->
+    <div id="modelo-about" class="modelo">
+        <div class="modelo-contenido">
+            <p id="about-text"></p>
         </div>
+    </div>
 
-        <!-- Contenedor para los campos del formulario -->
-        <div id="formFieldsContainer">
-
-            <!-- Campo de Nombre o Apodo -->
-            <div class="campo-formulario" id="nickname">
-                <label for="nickname"></label>
-                <input type="text" id="nickname" name="nickname" placeholder="nombre o apodo">
-            </div>
-
-            <!-- Campo de Correo Electrónico -->
-            <div class="campo-formulario" id="email">
-                <label for="email"></label>
-                <input type="email" id="email" name="email" placeholder="correo electrónico">
-            </div>
-
-            <!-- Campo desplegable de Trivia -->
-            <div class="campo-formulario" id="desplegable">
-                <label for="trivia-options"></label>
-                <select id="trivia-options" name="trivia-options">
-                    <option value="general">Arte 🖌️ </option>
-                    <option value="historia">Historia 📚</option>
-                    <option value="geografia">Geografía 🌍</option>
-                    <option value="deportes">Deportes ⚽ </option>
-                    <option value="entretenimiento">Entretenimiento 🎶</option>
-                </select>
-            </div>
-
-        </div> <!-- Fin del contenedor de los campos del formulario -->
-
-    </div> <!-- Fin del contenedor de la imagen -->
-
-    <script>
-        // array de avatares
-        const avatars = ["img/ava1.png", "img/ava2.png", "img/ava3.png"];
-        let currentAvatarIndex = 0;
-
-        // Elementos del DOM
-        const avatarElement = document.getElementById("avatar");
-        const leftArrow = document.getElementById("arrow-left");
-        const rightArrow = document.getElementById("arrow-right");
-
-        // Función para cambiar el avatar
-        function updateAvatar(index) {
-            avatarElement.src = avatars[index];
-        }
-
-        // Eventos para cambiar de avatar
-        leftArrow.addEventListener("click", () => {
-            currentAvatarIndex = (currentAvatarIndex - 1 + avatars.length) % avatars.length;
-            updateAvatar(currentAvatarIndex);
-        });
-
-        rightArrow.addEventListener("click", () => {
-            currentAvatarIndex = (currentAvatarIndex + 1) % avatars.length;
-            updateAvatar(currentAvatarIndex);
-        });
-    </script>
-
+    <!-- Modelo para fecha -->
+    <div id="modelofecha" class="modelo">
+        <div class="modelo-contenido">
+            <p id="modelo-texto"></p>
+        </div>
+    </div>
 </body>
+
 </html>
