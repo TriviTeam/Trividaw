@@ -55,7 +55,7 @@ function iniciar() {
 
     
 
-    // Close modals if clicked outside
+    // Close modals if clicked outside - cierra si clickas fuera
     window.addEventListener("click", function (event) {
         if (event.target === modelo) {
             modelo.style.display = "none";
@@ -64,4 +64,27 @@ function iniciar() {
             modeloAbout.style.display = "none";
         }
     });
+
+    const nicknameInput = document.getElementById("nickname");
+    const emailInput = document.getElementById("email");
+    const saveButton = document.getElementById("botonIni");
+
+    saveButton.addEventListener("click", ()=>{
+        const selectedAvatar = avatars[currentAvatarIndex];
+        const nickname = nicknameInput.value.trim();
+        const email = emailInput.value.trim();
+
+        if (nickname && email){
+            // guardar en sessionStorage
+            sessionStorage.setItem("avatar", selectedAvatar);
+            sessionStorage.setItem("nickname", nickname);
+            sessionStorage.setItem("email", email);
+        
+            window.location.href="juego1.html"; // cambiar más adelante
+        }else{
+            alert("Por favor, completa los campos ^.^ ");
+        }
+
+    });
 }
+

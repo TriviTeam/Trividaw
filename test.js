@@ -40,7 +40,7 @@ function iniciar() {
             });
 
     // About Us functionality
-    let boton2 = document.querySelector(".boton2");
+    let botonAbout = document.querySelector(".boton");
     let modeloAbout = document.getElementById("modelo-about");
     let aboutTexto = document.getElementById("about-text");
 
