@@ -1,43 +1,42 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trividaw</title>
     <script>
-        window.addEventListener("load", iniciar);
+      window.addEventListener("load", iniciar);
 
-        // He metido los eventos de los clickables y sus funciones dentro de iniciar - resto de logica fuera  
+      // He metido los eventos de los clickables y sus funciones dentro de iniciar - resto de logica fuera
 
-        function iniciar() {
-            let icono = document.getElementById("sound-icon");
-            icono.addEventListener("click", function () {
-                if (icono.src.includes("volume.png")) {
-                    icono.src = "img/mute.png";
-                } else {
-                    icono.src = "img/volume.png";
-                }
-            });
+      function iniciar() {
+        let icono = document.getElementById("sound-icon");
+        icono.addEventListener("click", function () {
+          if (icono.src.includes("volume.png")) {
+            icono.src = "img/mute.png";
+          } else {
+            icono.src = "img/volume.png";
+          }
+        });
 
-            let reloj = document.getElementById("clock-icon");
-            let modelo = document.getElementById("modelofecha");
-            let modeloTexto = document.getElementById("modelo-texto");
+        let reloj = document.getElementById("clock-icon");
+        let modelo = document.getElementById("modelofecha");
+        let modeloTexto = document.getElementById("modelo-texto");
 
-            reloj.addEventListener("click", function () {
-                let fecha = new Date();
-                let formatoFecha = fecha.toLocaleDateString();
-                let formatoHora = fecha.toLocaleTimeString();
-                modeloTexto.textContent = `Fecha: ${formatoFecha} - Hora: ${formatoHora}`;
-                modelo.style.display = "flex";
-            });
+        reloj.addEventListener("click", function () {
+          let fecha = new Date();
+          let formatoFecha = fecha.toLocaleDateString();
+          let formatoHora = fecha.toLocaleTimeString();
+          modeloTexto.textContent = `Fecha: ${formatoFecha} - Hora: ${formatoHora}`;
+          modelo.style.display = "flex";
+        });
 
-            let pregunta = document.getElementById("question-icon");
-            let modelocomojugar = document.getElementById("modelocomojugar");
-            let comoJugarTexto = document.getElementById("texto-comojugar");
+        let pregunta = document.getElementById("question-icon");
+        let modelocomojugar = document.getElementById("modelocomojugar");
+        let comoJugarTexto = document.getElementById("texto-comojugar");
 
-            pregunta.addEventListener("click", function () {
-                comoJugarTexto.innerHTML = `¡Bienvenido al juego! 🎉
+        pregunta.addEventListener("click", function () {
+          comoJugarTexto.innerHTML = `¡Bienvenido al juego! 🎉
                     El objetivo es muy sencillo y divertido, debes ordenar las letras desordenadas para formar una palabra correcta.
                     Para empezar verás que las letras de una palabra están desordenadas en la parte superior de la pantalla, solo debes hacer clic y arrastrar las letras hacia los cuadros vacíos de la parte inferior.
                     Una vez que arrastres una letra, colócala en el cuadro correspondiente, si pones la letra correcta en el lugar correcto, se pondrá de color verde, lo que significa que has acertado.
@@ -45,392 +44,480 @@
                     Cuando todas las letras estén en el lugar correcto, la palabra se completará y se marcará como correcta. 
                     Cuando termines de completar una palabra, conseguirás un punto y podrás seguir jugando con una nueva palabra desordenada, lo que hará el juego aún más emocionante.
                     Intenta lograr el mayor número de puntos antes de que acabe el tiempo... ¡¡corre, el tiempo vuela!!`;
-                modelocomojugar.style.display = "flex";
+          modelocomojugar.style.display = "flex";
+        });
+
+        window.addEventListener("click", function (event) {
+          if (event.target === modelo) {
+            modelo.style.display = "none";
+          }
+          if (event.target === modelocomojugar) {
+            modelocomojugar.style.display = "none";
+          }
+        });
+
+        const iconoAudio = document.getElementById("sound-icon");
+        const audio = document.getElementById("music");
+        let audioStarted = false;
+
+        // muted audio by default
+        audio.muted = true;
+
+        iconoAudio.addEventListener("click", function () {
+          // al primer click suena el audio
+          if (!audioStarted) {
+            audio.play().catch((error) => {
+              console.error("Audio play error:", error);
             });
+            audioStarted = true;
+          }
 
-            window.addEventListener("click", function (event) {
-                if (event.target === modelo) {
-                    modelo.style.display = "none";
-                }
-                if (event.target === modelocomojugar) {
-                    modelocomojugar.style.display = "none";
-                }
-            });
+          if (audio.muted) {
+            audio.muted = false; // desmutea
+            iconoAudio.src = "img/volume.png"; // cambia el icono a sonido
+          } else {
+            audio.muted = true; // Mutea el audio
+            iconoAudio.src = "img/mute.png"; // cambia el icono a mute
+          }
+        });
 
-            const iconoAudio = document.getElementById("sound-icon");
-            const audio = document.getElementById("music");
-            let audioStarted = false;
+        crearMarcadorYTemporizador();
+        iniciarJuego();
+        iniciarTemporizador();
+      }
 
-            // muted audio by default 
-            audio.muted = true;
+      let puntos = 0;
+      let tiempoRestante = 90; // Tiempo en segundos
+      let temporizador;
 
-            iconoAudio.addEventListener("click", function () {
-                // al primer click suena el audio
-                if (!audioStarted) {
-                    audio.play().catch((error) => {
-                        console.error("Audio play error:", error);
-                    });
-                    audioStarted = true;
-                }
+      function crearMarcadorYTemporizador() {
+        let contenedorSuperior = document.createElement("div");
+        contenedorSuperior.id = "contenedor-superior";
+        document.body.appendChild(contenedorSuperior);
 
-                if (audio.muted) {
-                    audio.muted = false;  // desmutea
-                    iconoAudio.src = "img/volume.png";  // cambia el icono a sonido
-                } else {
-                    audio.muted = true;  // Mutea el audio
-                    iconoAudio.src = "img/mute.png";  // cambia el icono a mute
-                }
-            });
+        // Marcador de puntos
 
-            crearMarcadorYTemporizador();
-            iniciarJuego();
-            iniciarTemporizador();
+        // Temporizador
+        let temporizadorDiv = document.createElement("div");
+        temporizadorDiv.id = "temporizador";
+        temporizadorDiv.textContent = "Tiempo: 01:30"; // Añadimos más??
+        contenedorSuperior.appendChild(temporizadorDiv);
+
+        // Puntuación
+        let puntuacionDiv = document.createElement("div");
+        puntuacionDiv.id = "puntuacion";
+        puntuacionDiv.textContent = "Puntuación: 0";
+        contenedorSuperior.appendChild(puntuacionDiv);
+      }
+
+      function iniciarTemporizador() {
+        temporizador = setInterval(() => {
+          if (tiempoRestante > 0) {
+            tiempoRestante--;
+            actualizarTemporizador();
+          } else {
+            clearInterval(temporizador);
+            finalizarJuego();
+          }
+        }, 1000); // cada 1000 milisegundos (cada 1 segundo)
+      }
+
+      function actualizarTemporizador() {
+        let minutos = Math.floor(tiempoRestante / 60);
+        let segundos = tiempoRestante % 60;
+
+        // Añadimos un '0' delante si es menor de 10
+        if (minutos < 10) {
+          minutos = "0" + minutos;
+        }
+        if (segundos < 10) {
+          segundos = "0" + segundos;
         }
 
-        let puntos = 0;
-        let tiempoRestante = 90; // Tiempo en segundos 
-        let temporizador;
+        let temporizadorDiv = document.getElementById("temporizador");
+        temporizadorDiv.textContent = `Tiempo: ${minutos}:${segundos}`;
+      }
 
-        function crearMarcadorYTemporizador() {
-            let contenedorSuperior = document.createElement("div");
-            contenedorSuperior.id = "contenedor-superior";
-            document.body.appendChild(contenedorSuperior);
+      function finalizarJuego() {
+        // Mostrar mensaje con puntuación final en la página
+        let puntuacionFinalDiv = document.getElementById("puntuacion");
+        puntuacionFinalDiv.textContent = `¡Tiempo agotado! Puntuación final: ${puntos}`;
+        let contenedorJuego = document.getElementById("contenedor-juego");
+        if (contenedorJuego) {
+          contenedorJuego.remove();
+        }
+      }
 
-            // Marcador de puntos
+      function iniciarJuego() {
+        let palabras = [
+          "manzana",
+          "elefante",
+          "ordenador",
+          "programa",
+          "javascript",
+          "árbol",
+          "pelota",
+          "estrella",
+          "peluche",
+          "zapatos",
+          "ratón",
+          "informática",
+          "cocina",
+          "silla",
+          "libro",
+          "luna",
+          "nieve",
+          "piedra",
+          "médico",
+          "sombra",
+          "reina",
+          "tigre",
+          "viento",
+          "cielo",
+          "río",
+          "luz",
+          "violeta",
+          "verde",
+          "feliz",
+          "globo",
+          "abogado",
+          "perro",
+          "gato",
+          "coche",
+          "sol",
+          "ventana",
+          "pintura",
+          "dientes",
+          "ojos",
+          "puerta",
+          "florecer",
+          "manos",
+          "agua",
+          "planta",
+          "pétalo",
+          "tren",
+          "camino",
+          "espejos",
+          "espacio",
+          "pintar",
+          "rojo",
+          "beso",
+          "noche",
+          "mañana",
+          "relámpago",
+          "infierno",
+          "rugir",
+          "tierra",
+          "verano",
+          "guerra",
+          "plaza",
+          "pluma",
+          "queso",
+          "almohada",
+          "empate",
+          "hoja",
+          "mes",
+          "madre",
+          "boca",
+        ];
 
-            // Temporizador
-            let temporizadorDiv = document.createElement("div");
-            temporizadorDiv.id = "temporizador";
-            temporizadorDiv.textContent = "Tiempo: 01:30"; // Añadimos más??
-            contenedorSuperior.appendChild(temporizadorDiv);
+        let contenedorJuego = document.createElement("div");
+        contenedorJuego.id = "contenedor-juego";
+        document.body.appendChild(contenedorJuego);
 
-            // Puntuación
-            let puntuacionDiv = document.createElement("div");
-            puntuacionDiv.id = "puntuacion";
-            puntuacionDiv.textContent = "Puntuación: 0";
-            contenedorSuperior.appendChild(puntuacionDiv);
+        let palabraAleatoria =
+          palabras[Math.floor(Math.random() * palabras.length)]; // Cojo una palabra aleatoria del array
+        let letrasDesordenadas = palabraAleatoria
+          .split("")
+          .sort(() => Math.random() - 0.5); // Desordeno letras
+
+        let contenedorLetras = document.createElement("div");
+        contenedorLetras.id = "contenedor-letras";
+        contenedorJuego.appendChild(contenedorLetras);
+
+        letrasDesordenadas.forEach((letra, index) => {
+          let cuadroLetra = document.createElement("div");
+          cuadroLetra.classList.add("cuadro-letra");
+          cuadroLetra.textContent = letra;
+          cuadroLetra.draggable = true;
+          cuadroLetra.id = letra + `${index}`; // Necesario porque si no tendria problemas en letras repes
+          cuadroLetra.addEventListener("dragstart", empezarArrastrar);
+          contenedorLetras.appendChild(cuadroLetra);
+        });
+
+        let contenedorVacios = document.createElement("div");
+        contenedorVacios.id = "contenedor-vacios";
+        contenedorJuego.appendChild(contenedorVacios);
+
+        palabraAleatoria.split("").forEach((letra, index) => {
+          let cuadroVacio = document.createElement("div");
+          cuadroVacio.classList.add("cuadro-vacio");
+          cuadroVacio.dataset.letraCorrecta = letra;
+          cuadroVacio.addEventListener("dragover", permitirSoltar);
+          cuadroVacio.addEventListener("drop", soltarLetra);
+          contenedorVacios.appendChild(cuadroVacio);
+        });
+      }
+
+      function empezarArrastrar(evento) {
+        evento.dataTransfer.setData("text", evento.target.id);
+      }
+
+      function permitirSoltar(evento) {
+        evento.preventDefault();
+      }
+
+      function soltarLetra(evento) {
+        evento.preventDefault();
+        let idLetra = evento.dataTransfer.getData("text");
+        let cuadroArrastrado = document.getElementById(idLetra);
+        let cuadroVacio = evento.target;
+
+        if (
+          !(
+            cuadroVacio.classList.contains("correcto") ||
+            cuadroArrastrado.classList.contains("correcto")
+          )
+        ) {
+          if (
+            cuadroArrastrado.textContent === cuadroVacio.dataset.letraCorrecta
+          ) {
+            cuadroVacio.appendChild(cuadroArrastrado);
+            cuadroArrastrado.setAttribute("draggable", "false");
+            cuadroArrastrado.style.backgroundColor = "green";
+            cuadroVacio.classList.add("correcto");
+          } else {
+            cuadroArrastrado.style.backgroundColor = "red";
+          }
+        }
+        comprobarCompletado();
+      }
+
+      function comprobarCompletado() {
+        let cuadrosVacios = document.querySelectorAll(".cuadro-vacio");
+        let esCorrecto = true; // Todos son correctos al principio
+
+        // Recorremos cada cuadro vacío para comprobar si tiene la clase 'correcto'
+        for (let i = 0; i < cuadrosVacios.length; i++) {
+          if (!cuadrosVacios[i].classList.contains("correcto")) {
+            esCorrecto = false; // Si encontramos un cuadro sin la clase 'correcto', cambiamos a false
+            break; // No necesitamos seguir comprobando, ya sabemos que no está completado
+          }
         }
 
-
-        function iniciarTemporizador() {
-            temporizador = setInterval(() => {
-                if (tiempoRestante > 0) {
-                    tiempoRestante--;
-                    actualizarTemporizador();
-                } else {
-                    clearInterval(temporizador);
-                    finalizarJuego();
-                }
-            }, 1000); // cada 1000 milisegundos (cada 1 segundo)
+        if (esCorrecto) {
+          puntos++;
+          actualizarPuntuacion();
+          document.getElementById("contenedor-juego").remove();
+          iniciarJuego();
         }
+      }
 
-        function actualizarTemporizador() {
-            let minutos = Math.floor(tiempoRestante / 60);
-            let segundos = tiempoRestante % 60;
-
-            // Añadimos un '0' delante si es menor de 10
-            if (minutos < 10) {
-                minutos = "0" + minutos;
-            }
-            if (segundos < 10) {
-                segundos = "0" + segundos;
-            }
-
-            let temporizadorDiv = document.getElementById("temporizador");
-            temporizadorDiv.textContent = `Tiempo: ${minutos}:${segundos}`;
-        }
-
-        function finalizarJuego() {
-            // Mostrar mensaje con puntuación final en la página
-            let puntuacionFinalDiv = document.getElementById("puntuacion");
-            puntuacionFinalDiv.textContent = `¡Tiempo agotado! Puntuación final: ${puntos}`;
-            let contenedorJuego = document.getElementById("contenedor-juego");
-            if (contenedorJuego) {
-                contenedorJuego.remove();
-            }
-        }
-
-        function iniciarJuego() {
-            let palabras = [
-                "manzana", "elefante", "ordenador", "programa", "javascript", "árbol", "pelota", "estrella",
-                "peluche", "zapatos", "ratón", "informática", "cocina", "silla", "libro", "luna", "nieve", "piedra",
-                "médico", "sombra", "reina", "tigre", "viento", "cielo", "río", "luz", "violeta", "verde", "feliz",
-                "globo", "abogado", "perro", "gato", "coche", "sol", "ventana", "pintura", "dientes", "ojos",
-                "puerta", "florecer", "manos", "agua", "planta", "pétalo", "tren", "camino", "espejos", "espacio",
-                "pintar", "rojo", "beso", "noche", "mañana", "relámpago", "infierno", "rugir", "tierra", "verano",
-                "guerra", "plaza", "pluma", "queso", "almohada", "empate", "hoja", "mes", "madre", "boca"
-            ];
-
-            let contenedorJuego = document.createElement("div");
-            contenedorJuego.id = "contenedor-juego";
-            document.body.appendChild(contenedorJuego);
-
-            let palabraAleatoria = palabras[Math.floor(Math.random() * palabras.length)]; // Cojo una palabra aleatoria del array
-            let letrasDesordenadas = palabraAleatoria.split("").sort(() => Math.random() - 0.5); // Desordeno letras
-
-            let contenedorLetras = document.createElement("div");
-            contenedorLetras.id = "contenedor-letras";
-            contenedorJuego.appendChild(contenedorLetras);
-
-            letrasDesordenadas.forEach((letra, index) => {
-                let cuadroLetra = document.createElement("div");
-                cuadroLetra.classList.add("cuadro-letra");
-                cuadroLetra.textContent = letra;
-                cuadroLetra.draggable = true;
-                cuadroLetra.id = letra + `${index}`; // Necesario porque si no tendria problemas en letras repes
-                cuadroLetra.addEventListener("dragstart", empezarArrastrar);
-                contenedorLetras.appendChild(cuadroLetra);
-            });
-
-            let contenedorVacios = document.createElement("div");
-            contenedorVacios.id = "contenedor-vacios";
-            contenedorJuego.appendChild(contenedorVacios);
-
-            palabraAleatoria.split("").forEach((letra, index) => {
-                let cuadroVacio = document.createElement("div");
-                cuadroVacio.classList.add("cuadro-vacio");
-                cuadroVacio.dataset.letraCorrecta = letra;
-                cuadroVacio.addEventListener("dragover", permitirSoltar);
-                cuadroVacio.addEventListener("drop", soltarLetra);
-                contenedorVacios.appendChild(cuadroVacio);
-            });
-        }
-
-        function empezarArrastrar(evento) {
-            evento.dataTransfer.setData("text", evento.target.id);
-        }
-
-        function permitirSoltar(evento) {
-            evento.preventDefault();
-        }
-
-        function soltarLetra(evento) {
-            evento.preventDefault();
-            let idLetra = evento.dataTransfer.getData("text");
-            let cuadroArrastrado = document.getElementById(idLetra);
-            let cuadroVacio = evento.target;
-
-            if (!(cuadroVacio.classList.contains("correcto") || cuadroArrastrado.classList.contains("correcto"))) {
-                if (cuadroArrastrado.textContent === cuadroVacio.dataset.letraCorrecta) {
-                    cuadroVacio.appendChild(cuadroArrastrado);
-                    cuadroArrastrado.setAttribute('draggable', 'false');
-                    cuadroArrastrado.style.backgroundColor = 'green';
-                    cuadroVacio.classList.add("correcto");
-                } else {
-                    cuadroArrastrado.style.backgroundColor = 'red';
-                }
-            }
-            comprobarCompletado();
-        }
-
-        function comprobarCompletado() {
-            let cuadrosVacios = document.querySelectorAll(".cuadro-vacio");
-            let esCorrecto = true; // Todos son correctos al principio
-
-            // Recorremos cada cuadro vacío para comprobar si tiene la clase 'correcto'
-            for (let i = 0; i < cuadrosVacios.length; i++) {
-                if (!cuadrosVacios[i].classList.contains("correcto")) {
-                    esCorrecto = false; // Si encontramos un cuadro sin la clase 'correcto', cambiamos a false
-                    break; // No necesitamos seguir comprobando, ya sabemos que no está completado
-                }
-            }
-
-            if (esCorrecto) {
-                puntos++;
-                actualizarPuntuacion();
-                document.getElementById("contenedor-juego").remove();
-                iniciarJuego();
-            }
-        }
-
-        function actualizarPuntuacion() {
-            let puntuacionDiv = document.getElementById("puntuacion");
-            puntuacionDiv.textContent = `Puntuación: ${puntos}`;
-        }
+      function actualizarPuntuacion() {
+        let puntuacionDiv = document.getElementById("puntuacion");
+        puntuacionDiv.textContent = `Puntuación: ${puntos}`;
+      }
     </script>
 
     <style>
-        body {
-            display: grid;
-            background-image: url("img/fondo.jpg");
-            background-size: cover;
-            height: 100vh;
-            background-position: center;
-            background-repeat: no-repeat;
-            margin: 0;
-            place-items: center;
+      body {
+        display: grid;
+        background-image: url("img/fondo.jpg");
+        background-size: cover;
+        height: 100vh;
+        background-position: center;
+        background-repeat: no-repeat;
+        margin: 0;
+        place-items: center;
+      }
+
+      #contenedor-superior {
+        display: flex;
+        justify-content: space-between;
+        width: 80%;
+        padding: 10px;
+      }
+
+      #marcador,
+      #temporizador,
+      #puntuacion {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 40px;
+        font-weight: bold;
+        padding: 5px 10px;
+        border-radius: 8px;
+        background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      #marcador {
+        color: #2d8a6f;
+      }
+
+      #temporizador {
+        color: #d9534f;
+      }
+
+      #puntuacion {
+        color: #5bc0de;
+      }
+
+      .texto {
+        position: absolute;
+        top: 140px;
+      }
+
+      .icon {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+      }
+
+      .icon-sound {
+        top: 20px;
+        left: 20px;
+      }
+
+      .icon-clock {
+        bottom: 20px;
+        left: 20px;
+      }
+
+      .icon-question {
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .icon-config {
+        top: 20px;
+        right: 20px;
+      }
+
+      .modelo {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modelo-contenido {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        animation: aparecer 0.3s ease-out;
+        max-width: 400px;
+        margin: 0 auto;
+        line-height: 1.6;
+        font-size: 16px;
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      @keyframes aparecer {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
         }
 
-        #contenedor-superior {
-            display: flex;
-            justify-content: space-between;
-            width: 80%;
-            padding: 10px;
+        to {
+          opacity: 1;
+          transform: scale(1);
         }
+      }
 
-        #marcador,
-        #temporizador,
-        #puntuacion {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 40px;
-            font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 8px;
-            background-color: rgba(0, 0, 0, 0.1);
-        }
+      #contenedor-juego {
+        display: flex;
+        flex-direction: column;
+        gap: 100px;
+        justify-content: center;
+        align-items: center;
+        margin: 20px;
+      }
 
-        #marcador {
-            color: #2d8a6f;
-        }
+      #contenedor-letras,
+      #contenedor-vacios {
+        display: flex;
+        gap: 10px;
+      }
 
-        #temporizador {
-            color: #d9534f;
-        }
+      .cuadro-letra,
+      .cuadro-vacio {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 20px;
+        font-weight: bold;
+      }
 
-        #puntuacion {
-            color: #5bc0de;
-        }
+      .cuadro-letra {
+        border: 2px solid black;
+        background-color: white;
+        cursor: grab;
+      }
 
-        .texto {
-            position: absolute;
-            top: 140px;
-        }
+      .cuadro-vacio {
+        border: 2px solid gray;
+        background-color: white;
+      }
 
-        .icon {
-            position: absolute;
-            width: 50px;
-            height: 50px;
-        }
+      .cuadro-vacio.correcto {
+        border-color: green;
+      }
 
-        .icon-sound {
-            top: 20px;
-            left: 20px;
-        }
-
-        .icon-clock {
-            bottom: 20px;
-            left: 20px;
-        }
-
-        .icon-question {
-            bottom: 20px;
-            right: 20px;
-        }
-
-        .icon-config {
-            top: 20px;
-            right: 20px;
-        }
-
-        .modelo {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modelo-contenido {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            animation: aparecer 0.3s ease-out;
-            max-width: 400px;
-            margin: 0 auto;
-            line-height: 1.6;
-            font-size: 16px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-
-        @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        #contenedor-juego {
-            display: flex;
-            flex-direction: column;
-            gap: 100px;
-            justify-content: center;
-            align-items: center;
-            margin: 20px;
-        }
-
-        #contenedor-letras,
-        #contenedor-vacios {
-            display: flex;
-            gap: 10px;
-        }
-
-        .cuadro-letra,
-        .cuadro-vacio {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .cuadro-letra {
-            border: 2px solid black;
-            background-color: white;
-            cursor: grab;
-        }
-
-        .cuadro-vacio {
-            border: 2px solid gray;
-            background-color: white;
-        }
-
-        .cuadro-vacio.correcto {
-            border-color: green;
-        }
-
-        .cuadro-vacio.incorrecto {
-            border-color: red;
-        }
+      .cuadro-vacio.incorrecto {
+        border-color: red;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <img src="img/clock.png" alt="Icono de reloj" class="icon icon-clock" id="clock-icon">
-    <img src="img/volume.png" alt="Icono de sonido" class="icon icon-sound" id="sound-icon">
-    <img src="img/question-mark.png" alt="Icono de pregunta" class="icon icon-question" id="question-icon">
-    <img src="img/settings.png" alt="Icono de configuración" class="icon icon-config">
+  <body>
+    <img
+      src="img/clock.png"
+      alt="Icono de reloj"
+      class="icon icon-clock"
+      id="clock-icon"
+    />
+    <img
+      src="img/volume.png"
+      alt="Icono de sonido"
+      class="icon icon-sound"
+      id="sound-icon"
+    />
+    <img
+      src="img/question-mark.png"
+      alt="Icono de pregunta"
+      class="icon icon-question"
+      id="question-icon"
+    />
+    <img
+      src="img/settings.png"
+      alt="Icono de configuración"
+      class="icon icon-config"
+    />
 
     <div id="modelofecha" class="modelo">
-        <div class="modelo-contenido">
-            <p id="modelo-texto"></p>
-        </div>
+      <div class="modelo-contenido">
+        <p id="modelo-texto"></p>
+      </div>
     </div>
 
     <div id="modelocomojugar" class="modelo">
-        <div class="modelo-contenido">
-            <p id="texto-comojugar"></p>
-        </div>
+      <div class="modelo-contenido">
+        <p id="texto-comojugar"></p>
+      </div>
     </div>
-    <audio id="music" style="display: none;" loop>
-        <source src="menu2/menu2.mp3" type="audio/mp3">
-        Your browser does not support the audio element.
+    <audio id="music" style="display: none" loop>
+      <source src="music.mp3" type="audio/mp3" />
+      Your browser does not support the audio element.
     </audio>
-</body>
-
+  </body>
 </html>

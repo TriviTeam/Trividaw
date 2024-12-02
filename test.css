@@ -181,3 +181,9 @@ la línea original, sólo comentado */
 }
 
 
+.icon {
+    width: 50px;
+    /* Ajusta según el tamaño deseado */
+    height: 50px;
+    cursor: pointer;
+}
