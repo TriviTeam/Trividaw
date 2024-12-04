@@ -47,14 +47,14 @@ function iniciar() {
     let aboutTexto = document.getElementById("about-text");
 
 
-    botonAbout.addEventListener("click", function () {
+    /*botonAbout.addEventListener("click", function () {
         aboutTexto.textContent = `¡Hola! Somos Fátima y Sergio, dos estudiantes apasionados por el desarrollo de aplicaciones web, actualmente cursando nuestro segundo y último año de este fascinante camino. Nuestro interés por la tecnología y los videojuegos nos llevó a crear este divertido proyecto: un trivia de preguntas que combina aprendizaje y entretenimiento.
         Este juego fue desarrollado utilizando JavaScript, HTML y CSS, aprovechando las herramientas que hemos aprendido durante el curso. Queríamos diseñar algo que no solo pusiera a prueba los conocimientos de los jugadores, sino que también reflejara nuestra creatividad y habilidades técnicas.
         Creemos que los juegos tienen el poder de conectar a las personas y de convertir el aprendizaje en una experiencia emocionante. Este trivial es nuestro pequeño aporte a ese mundillo, y esperamos que disfrutes tanto jugándolo como nosotros disfrutamos creándolo.
         ¡Gracias por acompañarnos en este viaje!`;
         modeloAbout.style.display = "flex";
     });
-
+*/
     
 
     // cierra el popup si clickas fuera
