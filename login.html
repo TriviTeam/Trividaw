@@ -183,16 +183,11 @@
       <img
         src="img/iniciar.png"
         id="botonIni"
-        alt="iniciar"
+        alt="iniciar" href="userPanel.html"
         onclick="handleFormSubmit(event)"
       />
     </div>
 
-    <!-- 
-    <div id="botonVueltaInicio" class="pulsadoresInicio" onclick="window.location.href='login.html';">
-        <img src="img/botonVueltaInicio.png" alt="Jugar"> 
-    </div>  
-    -->
     <audio id="music" style="display: none" loop>
       <source
         src="
@@ -229,7 +224,7 @@
     <script>
       // array de avatares
       const avatars = ["img/ava1.png", "img/ava2.png", "img/ava3.png"];
-      let currentAvatarIndex = 0; // gatito by default jeje
+      let currentAvatarIndex = 0; // gatito by default 
 
       // Elementos del DOM
       const avatarElement = document.getElementById("avatar");
@@ -267,19 +262,9 @@
         sessionStorage.set("email", email);
 
         //validacion de que se han guardado los datos
-        console.log("Datos guardados en sessionStorage: ", {username, email});
+        console.log("Datos guardados en sessionStorage: ", {nickname, email});
         document.getElementById("userForm").submit();
       }
-
-      /*
-       trozo de codigo para usar el sessionstorage en otras páginas 
-      const nickname = sessionStorage.getItem("nickname");
-      const email = sessionStorage.getItem("email");
-
-      mostrar los datos en la página
-      console.log(`Usuario: ${nickname}, Correo: ${email}`);
-      */
     </script>
-    <!--Ánimo. Let's gooo -->
   </body>
 </html>

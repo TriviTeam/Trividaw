@@ -29,17 +29,17 @@ function iniciar() {
     });
 
     // RELOJ ESQUINA INFERIOR IZQUIERDA
-     let reloj = document.getElementById("clock-icon");
-            let modelo = document.getElementById("modelofecha");
-            let modeloTexto = document.getElementById("modelo-texto");
-
-            reloj.addEventListener("click", function () {
-                let fecha = new Date();
-                let formatoFecha = fecha.toLocaleDateString();
-                let formatoHora = fecha.toLocaleTimeString();
-                modeloTexto.textContent = `Fecha: ${formatoFecha} - Hora: ${formatoHora}`;
-                modelo.style.display = "flex";
-            });
+    let reloj = document.getElementById("clock-icon");
+    let modelo = document.getElementById("modelofecha");
+    let modeloTexto = document.getElementById("modelo-texto");
+  
+    reloj.addEventListener("click", function () {
+      let fecha = new Date();
+      let formatoFecha = fecha.toLocaleDateString();
+      let formatoHora = fecha.toLocaleTimeString();
+      modeloTexto.textContent = `Fecha: ${formatoFecha} - Hora: ${formatoHora}`;
+      modelo.style.display = "flex";
+    });
 
     // About Us functionality
     let boton2 = document.querySelector(".boton2");
