@@ -179,7 +179,7 @@
     </div>
 
     <!--Botón de iniciar-->
-    <div id="divBotonIni" class="saveStartButton">
+    <div id="divBotonIni" class="saveStartButton"> 
       <img
         src="img/iniciar.png"
         id="botonIni"
@@ -196,7 +196,7 @@
     <audio id="music" style="display: none" loop>
       <source
         src="
-    music.mp3"
+        music.mp3"
         type="audio/mp3"
       />
       Your browser does not support the audio element.
@@ -253,7 +253,8 @@
         updateAvatar(currentAvatarIndex);
       });
 
-      // manejador 
+      // SESSION STORAGE 
+      // manejador
       function handleFormSubmit(event){
         event.preventDefault();
 
@@ -271,7 +272,7 @@
       }
 
       /*
-       trozo de codigo para usar el sessionstorage
+       trozo de codigo para usar el sessionstorage en otras páginas 
       const nickname = sessionStorage.getItem("nickname");
       const email = sessionStorage.getItem("email");
 

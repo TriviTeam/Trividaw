@@ -1,6 +1,8 @@
 window.addEventListener("load", iniciar);
 
 function iniciar() {
+
+    // MÚSICA
     // funciona así: Al recargar la página, pausado. Al pausar play. Mute by default, respetando las políticas de navegadores. 
     const iconoAudio = document.getElementById("sound-icon");
     const audio = document.getElementById("music"); 
@@ -8,7 +10,6 @@ function iniciar() {
 
     // muted audio by default 
     audio.muted = true;  
-
     iconoAudio.addEventListener("click", function () {
         // al primer click suena el audio
         if (!audioStarted) {
@@ -27,6 +28,7 @@ function iniciar() {
         }
     });
 
+    // RELOJ ESQUINA INFERIOR IZQUIERDA
      let reloj = document.getElementById("clock-icon");
             let modelo = document.getElementById("modelofecha");
             let modeloTexto = document.getElementById("modelo-texto");
@@ -55,7 +57,7 @@ function iniciar() {
 
     
 
-    // Close modals if clicked outside - cierra si clickas fuera
+    // cierra el popup si clickas fuera
     window.addEventListener("click", function (event) {
         if (event.target === modelo) {
             modelo.style.display = "none";
@@ -65,6 +67,7 @@ function iniciar() {
         }
     });
 
+    // GUARDAR NICKNAME, EMAIL, AVATAR
     const nicknameInput = document.getElementById("nickname");
     const emailInput = document.getElementById("email");
     const saveButton = document.getElementById("botonIni");
@@ -80,7 +83,7 @@ function iniciar() {
             sessionStorage.setItem("nickname", nickname);
             sessionStorage.setItem("email", email);
         
-            window.location.href="juego1.html"; // cambiar más adelante
+            window.location.href="wordle.html"; // cambiar más adelante
         }else{
             alert("Por favor, completa los campos ^.^ ");
         }

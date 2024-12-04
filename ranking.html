@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- insertar aqui estilos-->
+    <link rel ="">
+    <title>Document</title>
+</head>
+<body>
+    <div id="ranking">
+        <h2>Ranking de Jugadores</h2>
+        <ul id="playerList"></ul>
+    </div>
+      
+    <script>
+        function loadRanking() {
+          // recoge el array del localStorage
+          let playerArray = localStorage.getItem("playerArray") || "";
+          playerArray = playerArray ? playerArray.split(",") : [];
+      
+          // el elemento donde se mostrará el ranking
+          const playerList = document.getElementById("playerList");
+      
+          playerList.innerHTML = "";
+      
+          // recorre el array y muestra los datos
+          for (let i = 0; i < playerArray.length; i += 2) {
+            const username = playerArray[i];
+            const email = playerArray[i + 1];
+            const listItem = document.createElement("li");
+            listItem.textContent = `${(i / 2) + 1}. ${username} (${email})`;
+            playerList.appendChild(listItem);
+          }
+        }
+      
+        document.addEventListener("DOMContentLoaded", loadRanking);
+    </script>
+      
+</body>
+</html>
