@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Preguntas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="contenedor-juego" id="contenedor-juego">
+    </div>
+    <img src="img/clock.png" alt="Icono de reloj" class="icon icon-clock" id="clock-icon">
+    <img src="img/volume.png" alt="Icono de sonido" class="icon icon-sound" id="sound-icon">
+    <img src="img/question-mark.png" alt="Icono de pregunta" class="icon icon-question" id="question-icon">
+    <img src="img/settings.png" alt="Icono de configuración" class="icon icon-config">
+
+    <div id="modelofecha" class="modelo">
+        <div class="modelo-contenido">
+            <p id="modelo-texto"></p>
+        </div>
+    </div>
+
+    <div id="modelocomojugar" class="modelo">
+        <div class="modelo-contenido">
+            <p id="texto-comojugar"></p>
+        </div>
+    </div>
+    <audio id="music" style="background-color: none" loop>
+        <source src="menu2/menu2.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <script src="deportes.js"></script>
+</body>
+
+</html>
