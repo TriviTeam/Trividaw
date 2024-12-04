@@ -86,5 +86,22 @@ function iniciar() {
         }
 
     });
+
+    // sessionStorage formulario -> mail y nickname
+    document.getElementById("userForm").addEventListener("submit", function (e) {
+        e.preventDefault(); // Evita el comportamiento por defecto del formulario
+        
+        const nickname = document.getElementById("nickname").value;
+        const email = document.getElementById("email").value;
+      
+        // Guarda los datos en sessionStorage
+        sessionStorage.setItem("nickname", nickname);
+        sessionStorage.setItem("email", email);
+        sessionStorage.setItem("score", 0); // Inicializa la puntuación en 0
+        
+        // Redirige a la página de pruebas
+        window.location.href = "index.html";
+      });
+      
 }
 

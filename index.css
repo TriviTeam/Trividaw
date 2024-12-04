@@ -132,33 +132,33 @@ la línea original, sólo comentado */
 }
 
 #botonJugar{
-    position: absolute; /* Posicionamos el div respecto al contenedor */
-    top: 100%; /* Alinea el div verticalmente en el centro */
-    left: -14%; /* Alinea el div horizontalmente en el centro */
-    transform: translate(-50%, 230%); /* Corrige la posición para centrarlo perfectamente */
+    position: absolute; 
+    top: 100%; 
+    left: -14%; 
+    transform: translate(-50%, 230%); 
     width: 100px; /* Tamaño del div */
     height: 100px;
-    /*background-color: red; Solo para visualización */
+   
 }
 #botonAbout{
-    position: absolute; /* Posicionamos el div respecto al contenedor */
-    top: -180%; /* Alinea el div verticalmente en el centro */
-    left:-14%; /* Alinea el div horizontalmente en el centro */
+    position: absolute; 
+    top: -180%; 
+    left:-14%; 
     transform: translateY(10%);
-    width: 100px; /* Tamaño del div */
+    width: 100px; 
     height: 100px;
-    /*background-color: red; Solo para visualización */
+ 
 }
 #botonJugar {
     position: relative;
-    z-index: 10; /* Asegura que esté sobre otros elementos */
+    z-index: 10; 
     transform: translateY(-150%);
-    width: 230px; /* Ajusta el tamaño según lo necesites */
-    height: 215px; /* Ajusta la altura si lo deseas */
+    width: 230px; 
+    height: 215px; 
     margin-top: 10px;
-    cursor: pointer; /* Cambia el cursor a una manita al pasar por el botón */
+    cursor: pointer; 
     transition: transform 0.1s ease-in-out;
-    padding: 10px 20px; /* Ajusta el relleno para cambiar el tamaño interior */
+    padding: 10px 20px; 
 }
 
 #botonJugar:active {
@@ -180,10 +180,76 @@ la línea original, sólo comentado */
     transform: translateY(-150%) scale(0.95);
 }
 
-
 .icon {
     width: 50px;
-    /* Ajusta según el tamaño deseado */
     height: 50px;
     cursor: pointer;
 }
+
+#iconosInicio {
+    display:flex;
+    position: absolute;
+    width: 30px;
+    height: 10px;
+    margin-top: 30px;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+ #triviaRuedaWrapper {
+     position: absolute;
+     z-index: 10;
+     transform: translateX(98%);
+     margin-top: 1px;
+ }
+
+#triviaRueda {
+    width: 180px;
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    transform-origin: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    /* Opcional: redondea para simular una rueda */
+}
+
+#triviaRueda span {
+    display: block;
+    text-align: center;
+}
+
+.girando {
+    animation: girar 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes girar {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(720deg);
+        /* Dos giros completos */
+    }
+}
+
+  #infoNosotros {
+      position: absolute;
+      z-index: 10;
+      transform: translateX(105%);
+      width: 130px;
+      height: 150px;
+      margin-top: 370px;
+      cursor: pointer;
+      transition: transform 0.1s ease-in-out;
+      padding: 10px 20px;
+  }
+
+  #infoNosotros:active {
+      transform: translateX(105%) translateY(-1%) scale(0.95);
+  }
+
+  

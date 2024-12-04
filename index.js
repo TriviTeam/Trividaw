@@ -40,7 +40,7 @@ function iniciar() {
             });
 
     // About Us functionality
-    let botonAbout = document.querySelector(".boton");
+    let botonAbout = document.getElementById("botonAbout");
     let modeloAbout = document.getElementById("modelo-about");
     let aboutTexto = document.getElementById("about-text");
 
@@ -64,4 +64,23 @@ function iniciar() {
             modeloAbout.style.display = "none";
         }
     });
+
+    const triviaRueda = document.getElementById('triviaRueda');
+    let girando = false;
+
+    triviaRueda.addEventListener('click', () => {
+    if (!girando) {
+        girando = true; 
+        triviaRueda.classList.add('girando'); 
+
+        
+        setTimeout(() => {
+            girando = false;
+            triviaRueda.classList.remove('girando'); 
+        }, 1700); // Duración de la animación en milisegundos
+    }
+});
+
+
+
 }
