@@ -1,289 +1,213 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Trividaw - login</title>
-    <link rel="icon shortcut" href="img/logo.svg">
-    <script src="acciones.js" defer></script>
-    <!--carga diferida del script-->
-    <link rel="stylesheet" href="login.css" />
-    <style>
-      /* Estilo para el contenedor de la imagen */
-      #midContainerImage {
-        position: relative; /* Necesario para posicionar elementos de forma absoluta dentro */
-        width: 80%;
-        margin: 0 auto;
-        padding: 100px 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-      }
 
-      #formContainerImage {
-        width: 100%;
-        height: 70%;
-       
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trividaw - login</title>
+  <link rel="icon shortcut" href="img/logo.svg">
+  <script src="accioneslogin.js" defer></script>
+  <!--carga diferida del script-->
+  <link rel="stylesheet" href="login.css" />
+  <style>
+    /* Estilo para el contenedor de la imagen */
+    #midContainerImage {
+      position: relative;
+      /* Necesario para posicionar elementos de forma absoluta dentro */
+      width: 80%;
+      margin: 0 auto;
+      padding: 100px 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
 
-      /* Definir el contenedor de los campos de formulario con grid */
-      #formFieldsContainer {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start; /* Espaciado entre los campos */
-        position: absolute;
-        top: 35%; /* Esto ajusta el contenedor hacia la parte superior */
-        left: 49%;
-        transform: translateX(-50%); /* Centrado horizontal */
-        width: 150px; /* Ancho fijo */
-        text-align: center;
-        gap: 20px;
-        
-      }
-      #nickname {
-        order: 1; /* Define el orden del campo */
-        margin-top: 60px;
-        height: 9;
-      }
+    #formContainerImage {
+      width: 100%;
+      height: 70%;
 
-      #email {
-        order: 2;
-        margin-top: -40px;
-      }
+    }
 
-      #botonIni {
-        position: relative;
-        z-index: 10; /* Asegura que esté sobre otros elementos */
-        transform: translateY(-150%);
-        width: 300px;
-        margin-top: -900px;
-        cursor: pointer; /* Cambia el cursor a una manita al pasar por el botón */
-        transition: transform 0.1s ease-in-out;
-      }
+    /* Definir el contenedor de los campos de formulario con grid */
+    #formFieldsContainer {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      /* Espaciado entre los campos */
+      position: absolute;
+      top: 35%;
+      /* Esto ajusta el contenedor hacia la parte superior */
+      left: 49%;
+      transform: translateX(-50%);
+      /* Centrado horizontal */
+      width: 150px;
+      /* Ancho fijo */
+      text-align: center;
+      gap: 20px;
 
-      #botonIni:active {
-        transform: translateY(-150%) scale(0.95); /* efecto de pulsación */
-      }
+    }
 
-      /* Estilo para los campos de formulario */
-      .campo-formulario {
-        background-color: transparent;
-        padding: 15px;
-        border-radius: 30px; /* Esquinas completamente redondeadas */
-        box-sizing: border-box;
-      }
+    #nickname {
+      order: 1;
+      /* Define el orden del campo */
+      margin-top: 60px;
+      height: 9;
+    }
 
-      .campo-formulario input,
-      .campo-formulario select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        background-color: rgba(255, 255, 255, 0.7);
-        color: black;
-        border-radius: 30px;
-      }
+    #email {
+      order: 2;
+      margin-top: -40px;
+    }
 
-      .campo-formulario label {
-        display: block;
-        margin-bottom: 8px;
-      }
-      /* Avatar y sus flechas */
-      .avatar-container {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.1px;
-        margin: 20px 0;
-        margin-top: -65%;
-      }
-      /* Flechas */
-      .arrow {
-        cursor: pointer;
-        width: 70px;
-        height: 70px;
-      }
+    #botonIni {
+      position: relative;
+      z-index: 10;
+      /* Asegura que esté sobre otros elementos */
+      transform: translateY(-150%);
+      width: 300px;
+      margin-top: -900px;
+      cursor: pointer;
+      /* Cambia el cursor a una manita al pasar por el botón */
+      transition: transform 0.1s ease-in-out;
+    }
 
-      /* Avatar */
-      .avatar {
-        width: 150px;
-        height: 150px;
-        border-radius: 50%;
-        border: 2px solid #ccc;
-      }
-      #submitButton{
-        width: 200px;
-        position:absolute;
-        display: block;
-        bottom: -100px;
-        left:40%;
-        border-radius: 30px;
-        background-color: rgb(242, 210, 154);
-        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
-    </style>
-  </head>
-  <body>
-    <div id="midContainerImage">
-      <img
-        src="img/formContainerImage.png"
-        id="formContainerImage"
-        alt="imagen"
-      />
+    #botonIni:active {
+      transform: translateY(-150%) scale(0.95);
+      /* efecto de pulsación */
+    }
 
-      <div class="avatar-container">
-        <img
-          src="img/izq.png"
-          id="arrow-left"
-          class="arrow"
-          alt="Flecha izquierda"
-        />
-        <img
-          src="img/ava1.png"
-          id="avatar"
-          class="avatar"
-          alt="Avatar actual"
-        />
-        <img
-          src="img/der.png"
-          id="arrow-right"
-          class="arrow"
-          alt="Flecha derecha"
-        />
-      </div>
+    /* Estilo para los campos de formulario */
+    .campo-formulario {
+      background-color: transparent;
+      padding: 15px;
+      border-radius: 30px;
+      /* Esquinas completamente redondeadas */
+      box-sizing: border-box;
+    }
 
-      <form id="userForm" action="userPanel.html" method="POST">
-        <!-- Contenedor para los campos del formulario -->
-        <div id="formFieldsContainer">
-          <!-- Campo de Nombre o Apodo -->
-          <div class="campo-formulario" id="nickname">
-            <label for="nickname"></label>
-            <input
-              type="text"
-              id="nickname"
-              name="nickname"
-              placeholder="nombre o apodo"
-              required
-            />
-          </div>
+    .campo-formulario input,
+    .campo-formulario select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      background-color: rgba(255, 255, 255, 0.7);
+      color: black;
+      border-radius: 30px;
+    }
 
-          <!-- Campo de Correo Electrónico -->
-          <div class="campo-formulario" id="email">
-            <label for="email"></label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              placeholder="correo electrónico"
-              required
-            />
-          </div>
+    .campo-formulario label {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    /* Avatar y sus flechas */
+    .avatar-container {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.1px;
+      margin: 20px 0;
+      margin-top: -65%;
+    }
+
+    /* Flechas */
+    .arrow {
+      cursor: pointer;
+      width: 70px;
+      height: 70px;
+    }
+
+    /* Avatar */
+    .avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 2px solid #ccc;
+    }
+
+    #submitButton {
+      width: 200px;
+      position: absolute;
+      display: block;
+      bottom: -100px;
+      left: 40%;
+      border-radius: 30px;
+      background-color: rgb(242, 210, 154);
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="midContainerImage">
+    <img src="img/formContainerImage.png" id="formContainerImage" alt="imagen" />
+
+    <div class="avatar-container">
+      <img src="img/izq.png" id="arrow-left" class="arrow" alt="Flecha izquierda" />
+      <img src="img/ava1.png" id="avatar" class="avatar" alt="Avatar actual" />
+      <img src="img/der.png" id="arrow-right" class="arrow" alt="Flecha derecha" />
+    </div>
+
+    <form id="userForm" action="userPanel.html" method="POST">
+      <!-- Contenedor para los campos del formulario -->
+      <div id="formFieldsContainer">
+        <!-- Campo de Nombre o Apodo -->
+        <div class="campo-formulario" id="nickname">
+          <label for="nickname"></label>
+          <input type="text" id="nickname" name="nickname" placeholder="nombre o apodo" required />
         </div>
-        <button type="submit" id="submitButton">¡A JUGAR! 😊</button>
+
+        <!-- Campo de Correo Electrónico -->
+        <div class="campo-formulario" id="email">
+          <label for="email"></label>
+          <input type="email" id="email" name="email" placeholder="correo electrónico" required />
+        </div>
+      </div>
+      <button type="submit" id="submitButton">¡A JUGAR! 😊</button>
     </form>
-        <!-- Fin del contenedor de los campos del formulario -->
-     
+    <!-- Fin del contenedor de los campos del formulario -->
+
+  </div>
+  <!-- Fin del contenedor de la imagen -->
+
+  <!--Botón de iniciar-->
+
+  <div id="divBotonIni" class="saveStartButton">
+
+
+  </div>
+  <div id="midContainerBanner" class="floating-image">
+    <img src="img/welcomeBanner.png" id="welcomeBanner" alt="Bienvenidos" />
+  </div>
+
+
+
+  <audio id="music" style="display: none" loop>
+    <source src="
+        music.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <img src="img/clock.png" alt="Icono de reloj" class="icon icon-clock" id="clock-icon" />
+  <img src="img/volume.png" alt="Icono de sonido" class="icon icon-sound" id="sound-icon" />
+  <img src="img/trophy.png" alt="Icono de trofeo" class="icon icon-trophy" />
+  <img src="img/question-mark.png" alt="Icono de pregunta" class="icon icon-question" id="question-icon" />
+  <img src="img/settings.png" alt="Icono de configuración" class="icon icon-config" />
+
+  <div id="modelofecha" class="modelo">
+    <div class="modelo-contenido">
+      <p id="modelo-texto"></p>
     </div>
-    <!-- Fin del contenedor de la imagen -->
-     
- <!--Botón de iniciar-->
+  </div>
 
- <div id="divBotonIni" class="saveStartButton"> 
-
- 
-</div>
-    <div id="midContainerBanner" class="floating-image">
-      <img src="img/welcomeBanner.png" id="welcomeBanner" alt="Bienvenidos" />
+  <div id="modelocomojugar" class="modelo">
+    <div class="modelo-contenido">
+      <p id="texto-comojugar"></p>
     </div>
+  </div>
 
-   
+</body>
 
-    <audio id="music" style="display: none" loop>
-      <source
-        src="
-        music.mp3"
-        type="audio/mp3"
-      />
-      Your browser does not support the audio element.
-    </audio>
-
-    <img
-      src="img/clock.png"
-      alt="Icono de reloj"
-      class="icon icon-clock"
-      id="clock-icon"
-    />
-    <img
-      src="img/volume.png"
-      alt="Icono de sonido"
-      class="icon icon-sound"
-      id="sound-icon"
-    />
-    <img src="img/trophy.png" alt="Icono de trofeo" class="icon icon-trophy" />
-    <img
-      src="img/question-mark.png"
-      alt="Icono de pregunta"
-      class="icon icon-question"
-    />
-    <img
-      src="img/settings.png"
-      alt="Icono de configuración"
-      class="icon icon-config"
-    />
-
-    <script>
-      // array de avatares
-      const avatars = ["img/ava1.png", "img/ava2.png", "img/ava3.png"];
-      let currentAvatarIndex = 0; // gatito by default 
-
-      // Elementos del DOM
-      const avatarElement = document.getElementById("avatar");
-      const leftArrow = document.getElementById("arrow-left");
-      const rightArrow = document.getElementById("arrow-right");
-
-      // Función para cambiar el avatar
-      function updateAvatar(index) {
-        avatarElement.src = avatars[index];
-      }
-
-      // Eventos para cambiar de avatar
-      leftArrow.addEventListener("click", () => {
-        currentAvatarIndex =
-          (currentAvatarIndex - 1 + avatars.length) % avatars.length;
-        updateAvatar(currentAvatarIndex);
-      });
-
-      rightArrow.addEventListener("click", () => {
-        currentAvatarIndex = (currentAvatarIndex + 1) % avatars.length;
-        updateAvatar(currentAvatarIndex);
-      });
-
-     // SESSION STORAGE 
-// manejador
-function handleFormSubmit(event) {
-  event.preventDefault(); // Evita el envío normal del formulario
-
-  // Recoger datos del formulario
-  const nickname = document.getElementById("nickname").value;
-  const email = document.getElementById("email").value;
-
-  // Guardarlos en sessionStorage
-  sessionStorage.setItem("nickname", nickname);
-  sessionStorage.setItem("email", email); // Cambiado a setItem
-
-  // Validación de que se han guardado los datos
-  console.log("Datos guardados en sessionStorage: ", { nickname, email });
-
-  // Redirigir manualmente a la acción del formulario
-  window.location.href = "userPanel.html";
-}
-
-// Asignar el manejador al formulario
-document.getElementById("userForm").addEventListener("submit", handleFormSubmit);
-      
-    </script>
-  </body>
 </html>
-
-
-

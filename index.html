@@ -1,99 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="login.css" />
-    <link rel="stylesheet" href="index.css" />
-    <script src="index.js" defer></script>
-    <!--carga diferida del script-->
-    <title>Trividaw</title>
 
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="login.css" />
+  <link rel="stylesheet" href="index.css" />
+  <script src="index.js" defer></script>
+  <title>Trividaw</title>
+</head>
 
-  <body>
-    <div id="trividawBanner">
-      <img
-        src="img/trividaw.png"
-        alt="trividaw"
-        id="trividawFlota"
-        class="floating-image2"
-      />
+<body>
+  <div id="trividawBanner">
+    <img src="img/trividaw.png" alt="trividaw" id="trividawFlota" class="floating-image2" />
+  </div>
+  <div id="contenedorRedondo">
+    <img src="img/form.png" />
+  </div>
+
+  <div id="botonJugar" class="pulsadoresInicio">
+    <img src="img/jugarBoton.png" alt="Jugar" onclick="window.location.href='login.html'" />
+  </div>
+
+  <div id="botonAbout" class="pulsadoresInicio">
+    <img src="img/aboutBoton.png" />
+  </div>
+
+  <div id="triviaRuedaWrapper">
+    <div id="triviaRueda">
+      <img src="img/triviaRueda.png">
     </div>
-    <div id="contenedorRedondo">
-      <img src="img/form.png" />
+  </div>
+
+  <div id="infoNosotros" class="iconosInicio">
+    <img src="img/info.png" />
+  </div>
+
+  <img src="img/clock.png" alt="Icono de reloj" class="icon icon-clock" id="clock-icon" />
+  <img src="img/volume.png" alt="Icono de sonido" class="icon icon-sound" id="sound-icon" />
+  <img src="img/trophy.png" alt="Icono de trofeo" class="icon icon-trophy" />
+  <img src="img/settings.png" alt="Icono de configuración" class="icon icon-config" />
+
+  <audio id="music" style="display: none" loop>
+    <source src="music.mp3" type="audio/mp3" />
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Modelo para About Us -->
+  <div id="modeloabout" class="modelo">
+    <div class="modelo-contenido">
+      <p id="about-texto"></p>  <!-- Cambié el id aquí -->
     </div>
+  </div>
 
-    <div id="botonJugar" class="pulsadoresInicio">
-      <img
-        src="img/jugarBoton.png"
-        alt="Jugar"
-        onclick="window.location.href='login.html'"
-      />
+  <!-- Modelo para fecha -->
+  <div id="modelofecha" class="modelo">
+    <div class="modelo-contenido">
+      <p id="fecha-texto"></p>  <!-- Cambié el id aquí -->
     </div>
+  </div>
+</body>
 
-    <div id="botonAbout" class="pulsadoresInicio">
-      <img src="img/aboutBoton.png" />
-    </div>
-
-    <div id="triviaRuedaWrapper">
-      <div id="triviaRueda">
-        <img src="img/triviaRueda.png">
-      </div>
-    </div>
-
-    <div id="infoNosotros" class="iconosInicio">
-      <img src="img/info.png" />
-    </div>
-
-    <img
-      src="img/clock.png"
-      alt="Icono de reloj"
-      class="icon icon-clock"
-      id="clock-icon"
-    />
-    <img
-      src="img/volume.png"
-      alt="Icono de sonido"
-      class="icon icon-sound"
-      id="sound-icon"
-    />
-    <img src="img/trophy.png" alt="Icono de trofeo" class="icon icon-trophy" />
-    <img
-      src="img/question-mark.png"
-      alt="Icono de pregunta"
-      class="icon icon-question"
-    />
-    <img
-      src="img/settings.png"
-      alt="Icono de configuración"
-      class="icon icon-config"
-    />
-
-    <audio id="music" style="display: none" loop>
-      <source src="music.mp3" type="audio/mp3" />
-      Your browser does not support the audio element.
-    </audio>
-
-    <img
-      src="img/volume.png"
-      alt="Icono de sonido"
-      class="icon icon-sound"
-      id="sound-icon"
-    />
-
-    <!-- Modelo para about -->
-    <div id="modelofecha" class="modelo">
-      <div class="modelo-contenido">
-        <p id="modelo-texto"></p>
-      </div>
-    </div>
-
-    <!-- Modelo para fecha -->
-    <div id="modelofecha" class="modelo">
-      <div class="modelo-contenido">
-        <p id="modelo-texto"></p>
-      </div>
-    </div>
-  </body>
 </html>
