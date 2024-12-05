@@ -1,110 +1,65 @@
-window.addEventListener("load", iniciar);
+window.addEventListener("load", function () {
+  const wordleIcon = document.getElementById("icon-star");
+  wordleIcon.addEventListener("click", function () {
+    window.location.href = "wordle.html";
+  });
+  // MÚSICA
+  // funciona así: Al recargar la página, pausado. Al pausar play. Mute by default, respetando las políticas de navegadores.
+  const iconoAudio = document.getElementById("sound-icon");
+  const audio = document.getElementById("music");
+  let audioStarted = false;
 
-function iniciar() {
-
-    // MÚSICA
-    // funciona así: Al recargar la página, pausado. Al pausar play. Mute by default, respetando las políticas de navegadores. 
-    const iconoAudio = document.getElementById("sound-icon");
-    const audio = document.getElementById("music"); 
-    let audioStarted = false; 
-
-    // muted audio by default 
-    audio.muted = true;  
-    iconoAudio.addEventListener("click", function () {
-        // al primer click suena el audio
-        if (!audioStarted) {
-            audio.play().catch((error) => {
-                console.error("Audio play error:", error);
-            });
-            audioStarted = true;
-        }
-
-        if (audio.muted) {
-            audio.muted = false;  // desmutea
-            iconoAudio.src = "img/volume.png";  // cambia el icono a sonido
-        } else {
-            audio.muted = true;  // Mutea el audio
-            iconoAudio.src = "img/mute.png";  // cambia el icono a mute
-        }
-    });
-
-    // RELOJ ESQUINA INFERIOR IZQUIERDA
-    let reloj = document.getElementById("clock-icon");
-    let modelo = document.getElementById("modelofecha");
-    let modeloTexto = document.getElementById("modelo-texto");
-  
-    reloj.addEventListener("click", function () {
-      let fecha = new Date();
-      let formatoFecha = fecha.toLocaleDateString();
-      let formatoHora = fecha.toLocaleTimeString();
-      modeloTexto.textContent = `Fecha: ${formatoFecha} - Hora: ${formatoHora}`;
-      modelo.style.display = "flex";
-    });
-
-    // About Us functionality
-    let boton2 = document.querySelector(".boton2");
-    let modeloAbout = document.getElementById("modelo-about");
-    let aboutTexto = document.getElementById("about-text");
-
-
-    /*botonAbout.addEventListener("click", function () {
-        aboutTexto.textContent = `¡Hola! Somos Fátima y Sergio, dos estudiantes apasionados por el desarrollo de aplicaciones web, actualmente cursando nuestro segundo y último año de este fascinante camino. Nuestro interés por la tecnología y los videojuegos nos llevó a crear este divertido proyecto: un trivia de preguntas que combina aprendizaje y entretenimiento.
-        Este juego fue desarrollado utilizando JavaScript, HTML y CSS, aprovechando las herramientas que hemos aprendido durante el curso. Queríamos diseñar algo que no solo pusiera a prueba los conocimientos de los jugadores, sino que también reflejara nuestra creatividad y habilidades técnicas.
-        Creemos que los juegos tienen el poder de conectar a las personas y de convertir el aprendizaje en una experiencia emocionante. Este trivial es nuestro pequeño aporte a ese mundillo, y esperamos que disfrutes tanto jugándolo como nosotros disfrutamos creándolo.
-        ¡Gracias por acompañarnos en este viaje!`;
-        modeloAbout.style.display = "flex";
-    });
-*/
-    
-
-    // cierra el popup si clickas fuera
-    window.addEventListener("click", function (event) {
-        if (event.target === modelo) {
-            modelo.style.display = "none";
-        }
-        if (event.target === modeloAbout) {
-            modeloAbout.style.display = "none";
-        }
-    });
-
-    // GUARDAR NICKNAME, EMAIL, AVATAR
-    const nicknameInput = document.getElementById("nickname");
-    const emailInput = document.getElementById("email");
-    const saveButton = document.getElementById("botonIni");
-
-    saveButton.addEventListener("click", ()=>{
-        const selectedAvatar = avatars[currentAvatarIndex];
-        const nickname = nicknameInput.value.trim();
-        const email = emailInput.value.trim();
-
-        if (nickname && email){
-            // guardar en sessionStorage
-            sessionStorage.setItem("avatar", selectedAvatar);
-            sessionStorage.setItem("nickname", nickname);
-            sessionStorage.setItem("email", email);
-        
-            window.location.href="wordle.html"; // cambiar más adelante
-        }else{
-            alert("Por favor, completa los campos ^.^ ");
-        }
-
-    });
-
-    // sessionStorage formulario -> mail y nickname
-    document.getElementById("userForm").addEventListener("submit", function (e) {
-        e.preventDefault(); // Evita el comportamiento por defecto del formulario
-        
-        const nickname = document.getElementById("nickname").value;
-        const email = document.getElementById("email").value;
-      
-        // Guarda los datos en sessionStorage
-        sessionStorage.setItem("nickname", nickname);
-        sessionStorage.setItem("email", email);
-        sessionStorage.setItem("score", 0); // Inicializa la puntuación en 0
-        
-        // Redirige a la página de pruebas
-        window.location.href = "index.html";
+  // muted audio by default
+  audio.muted = true;
+  iconoAudio.addEventListener("click", function () {
+    // al primer click suena el audio
+    if (!audioStarted) {
+      audio.play().catch((error) => {
+        console.error("Audio play error:", error);
       });
-      
-}
+      audioStarted = true;
+    }
 
+    if (audio.muted) {
+      audio.muted = false; // desmutea
+      iconoAudio.src = "img/volume.png"; // cambia el icono a sonido
+    } else {
+      audio.muted = true; // Mutea el audio
+      iconoAudio.src = "img/mute.png"; // cambia el icono a mute
+    }
+  });
+  let reloj = document.getElementById("clock-icon");
+  let modelo = document.getElementById("modelofecha");
+  let modeloTexto = document.getElementById("modelo-texto");
+
+  reloj.addEventListener("click", function () {
+    let fecha = new Date();
+    let formatoFecha = fecha.toLocaleDateString();
+    let formatoHora = fecha.toLocaleTimeString();
+    modeloTexto.textContent = `Fecha: ${formatoFecha} - Hora: ${formatoHora}`;
+    modelo.style.display = "flex";
+  });
+
+  let pregunta = document.getElementById("question-icon");
+  let modelocomojugar = document.getElementById("modelocomojugar");
+  let comoJugarTexto = document.getElementById("texto-comojugar");
+
+  pregunta.addEventListener("click", function () {
+    comoJugarTexto.innerHTML = `¡Hola, aventurero del conocimiento! 🧠✨
+        Estás a punto de embarcarte en una misión épica en esta página de categorías para jugar. Aquí, elige sabiamente tu destino, porque cada categoría que seleccionas te llevará a un universo lleno de desafíos y diversión. 🚀
+        ¿Te gusta la ciencia? Prepárate para preguntas que podrían hacerte sentir como un futuro Einstein. 🧪 ¿O tal vez prefieres el arte? 🎨 Entonces, pon a prueba tu creatividad y conocimiento artístico. ¿Deportes? Historia? Geografía? ¡Las opciones están a tus pies! Cada una te espera con preguntas listas para poner a prueba tus habilidades.
+        Pero espera, hay más. 👀
+        Si te fijas bien, verás un icono de estrella brillante. 🌟 Si haces clic en él, ¡te adentrarás en una modalidad de juego completamente diferente! Aquí no tendrás que responder preguntas, sino que te enfrentarás al desafío de reordenar palabras para formar frases correctas. Es como un rompecabezas, pero con palabras. 🧩📝
+        Así que, ¿qué esperas? Escoge tu camino y prepárate para aprender, reír y, sobre todo, ¡divertirte como nunca! 😄`;
+    modelocomojugar.style.display = "flex";
+  });
+
+  window.addEventListener("click", function (event) {
+    if (event.target === modelo) {
+      modelo.style.display = "none";
+    }
+    if (event.target === modelocomojugar) {
+      modelocomojugar.style.display = "none";
+    }
+  });
+});

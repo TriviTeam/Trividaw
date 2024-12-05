@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Trividaw - login</title>
-    <script src="acciones.js" defer></script>
+    <script src="acciones.js"></script>
     <!--carga diferida del script-->
     <link rel="stylesheet" href="userPanel.css" />
     <style>
@@ -72,12 +72,27 @@
       src="img/question-mark.png"
       alt="Icono de pregunta"
       class="icon icon-question"
+      id="question-icon"
     />
     <img
       src="img/settings.png"
       alt="Icono de configuración"
       class="icon icon-config"
     />
+    <img src="star.png" alt="icono wordle" class="icon icon-star" id="icon-star" title="reordena">
+    <div id="modelofecha" class="modelo">
+      <div class="modelo-contenido">
+        <p id="modelo-texto"></p>
+      </div>
+    </div>
+
+    <div id="modelocomojugar" class="modelo">
+      <div class="modelo-contenido">
+        <p id="texto-comojugar"></p>
+      </div>
+    </div>
+
+    
 
 
   </body>

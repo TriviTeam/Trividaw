@@ -1,6 +1,6 @@
 body {
     display: grid;
-    background-image: url('fondo.png'); /* Cambia a tu ruta de fondo */
+    background-image: url('img/fondo.jpg'); /* Cambia a tu ruta de fondo */
     background-size: cover;
     height: 100vh; 
     background-position: center; 
@@ -82,6 +82,13 @@ body {
 .icon-config {
     top: 20px;
     right: 80px; 
+}
+
+.icon-star{
+    bottom: 70px;
+    right: 48.5%;
+    width: 100px;
+    height: 100px;
 }
 
 .modelo {
