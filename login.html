@@ -23,8 +23,8 @@
 
       #formContainerImage {
         width: 100%;
-        height: auto;
-        object-fit: contain;
+        height: 70%;
+       
       }
 
       /* Definir el contenedor de los campos de formulario con grid */
@@ -33,12 +33,13 @@
         flex-direction: column;
         justify-content: flex-start; /* Espaciado entre los campos */
         position: absolute;
-        top: 25%; /* Esto ajusta el contenedor hacia la parte superior */
-        left: 50%;
+        top: 35%; /* Esto ajusta el contenedor hacia la parte superior */
+        left: 49%;
         transform: translateX(-50%); /* Centrado horizontal */
         width: 150px; /* Ancho fijo */
         text-align: center;
         gap: 20px;
+        
       }
       #nickname {
         order: 1; /* Define el orden del campo */
@@ -67,7 +68,7 @@
 
       /* Estilo para los campos de formulario */
       .campo-formulario {
-        background-color: rgba(255, 255, 255, 0.2);
+        background-color: transparent;
         padding: 15px;
         border-radius: 30px; /* Esquinas completamente redondeadas */
         box-sizing: border-box;
@@ -111,6 +112,15 @@
         border-radius: 50%;
         border: 2px solid #ccc;
       }
+      #submitButton{
+        width: 200px;
+        position:absolute;
+        display: block;
+        bottom: -100px;
+        left:40%;
+        border-radius: 30px;
+        background-color: rgb(242, 210, 154);
+        font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;}
     </style>
   </head>
   <body>
@@ -142,7 +152,7 @@
         />
       </div>
 
-      <form id="userForm" action="index.html" method="POST">
+      <form id="userForm" action="userPanel.html" method="POST">
         <!-- Contenedor para los campos del formulario -->
         <div id="formFieldsContainer">
           <!-- Campo de Nombre o Apodo -->
@@ -169,24 +179,24 @@
             />
           </div>
         </div>
+        <button type="submit" id="submitButton">¡A JUGAR! 😊</button>
+    </form>
         <!-- Fin del contenedor de los campos del formulario -->
-      </form>
+     
     </div>
     <!-- Fin del contenedor de la imagen -->
+     
+ <!--Botón de iniciar-->
 
+ <div id="divBotonIni" class="saveStartButton"> 
+
+ 
+</div>
     <div id="midContainerBanner" class="floating-image">
       <img src="img/welcomeBanner.png" id="welcomeBanner" alt="Bienvenidos" />
     </div>
 
-    <!--Botón de iniciar-->
-    <div id="divBotonIni" class="saveStartButton"> 
-      <img
-        src="img/iniciar.png"
-        id="botonIni"
-        alt="iniciar" href="userPanel.html"
-        onclick="handleFormSubmit(event)"
-      />
-    </div>
+   
 
     <audio id="music" style="display: none" loop>
       <source
@@ -248,23 +258,32 @@
         updateAvatar(currentAvatarIndex);
       });
 
-      // SESSION STORAGE 
-      // manejador
-      function handleFormSubmit(event){
-        event.preventDefault();
+     // SESSION STORAGE 
+// manejador
+function handleFormSubmit(event) {
+  event.preventDefault(); // Evita el envío normal del formulario
 
-        //recoger datos del formulario
-        const nickname = document.getElementById("nickname").value;
-        const email = document.getElementById("email").value;
+  // Recoger datos del formulario
+  const nickname = document.getElementById("nickname").value;
+  const email = document.getElementById("email").value;
 
-        //guardarlos en sessionStorage
-        sessionStorage.setItem("nickname", nickname);
-        sessionStorage.set("email", email);
+  // Guardarlos en sessionStorage
+  sessionStorage.setItem("nickname", nickname);
+  sessionStorage.setItem("email", email); // Cambiado a setItem
 
-        //validacion de que se han guardado los datos
-        console.log("Datos guardados en sessionStorage: ", {nickname, email});
-        document.getElementById("userForm").submit();
-      }
+  // Validación de que se han guardado los datos
+  console.log("Datos guardados en sessionStorage: ", { nickname, email });
+
+  // Redirigir manualmente a la acción del formulario
+  window.location.href = "userPanel.html";
+}
+
+// Asignar el manejador al formulario
+document.getElementById("userForm").addEventListener("submit", handleFormSubmit);
+      
     </script>
   </body>
 </html>
+
+
+
